@@ -1,0 +1,11 @@
+
+
+.diagram_container {
+	margin: 0px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	height: 450px; /*Fallback if browser does not understand 'vh'*/
+	height: 50vh;
+	min-height:180px;	/* but at least this height in pixel */
+	box-shadow: 1px 1px 5px #888
+}

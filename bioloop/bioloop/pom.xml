@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.softwarenovotny</groupId>
+	<artifactId>bioloop</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Bioloop</name>
+
+	<properties>
+		<jettyVersion>9.2.13.v20150730</jettyVersion>
+	</properties>
+
+
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty.websocket</groupId>
+			<artifactId>websocket-api</artifactId>
+			<version>${jettyVersion}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty.websocket</groupId>
+			<artifactId>websocket-server</artifactId>
+			<version>${jettyVersion}</version>
+		</dependency>
+
+		<!-- Use JSON classes -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
+
+
+		<!-- Serial Port communication https://github.com/Fazecast/jSerialComm/ -->
+		<dependency>
+			<groupId>com.fazecast</groupId>
+			<artifactId>jSerialComm</artifactId>
+			<version>1.3.7</version>
+		</dependency>
+
+		<!-- Get Bootstrap (and jquery as transitive dependency) as a WebJar This 
+			will be stored under target/bioloop/WEB-INF/lib automatically See http://www.webjars.org/documentation 
+			-> Servlet 3 -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.5</version>
+		</dependency>
+
+		<!-- Font-Awesome icons -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>4.4.0</version>
+		</dependency>
+
+		<!-- Get Flot JavaScript diagram as WebJar See http://www.webjars.org/documentation 
+			-> Servlet 3 -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>flot</artifactId>
+			<version>0.8.3-1</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>bioloop</finalName>
+
+		<!-- Define the Java version to be used for compilation. Additionally JAVA_HOME 
+			must be set (e.g. in ~/.profile). -->
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+
+			<!-- THis plugin allows to start Jetty and run this servlet by calling 
+				'mvn jetty:run' -->
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${jettyVersion}</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<organization>
+		<name>Ingenieurbüro Novotny</name>
+		<url>http://software-novotny.de</url>
+	</organization>
+
+</project>
