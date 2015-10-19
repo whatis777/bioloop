@@ -4,8 +4,24 @@
 	margin: 0px;
 	padding: 10px;
 	border: 1px solid #ddd;
-	height: 450px; /*Fallback if browser does not understand 'vh'*/
-	height: 50vh;
+	height: 350px; /*Fallback if browser does not understand 'vh'*/
+	height: 40vh;
 	min-height:180px;	/* but at least this height in pixel */
 	box-shadow: 1px 1px 5px #888
+}
+
+/* 
+A spacer to produce a vertical gap.
+Usage: <div class="vertical_spacer"/>
+*/
+.vertical_spacer {
+  margin-top: 20px;
+}
+
+.vertical_spacer-lg {
+  margin-top: 50px;
+}
+
+.navbar_first_level {
+ margin-bottom: 0px; /* First level navbar: get rid of margin, so that a second navbar can be used without gap */
 }

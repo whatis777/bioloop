@@ -41,10 +41,11 @@ public class SerialListener {
 	 * 
 	 * @param portName
 	 *            The name of the serial port to be used
+	 * @param baudrate The baudrate of the port 
 	 * @throws Exception
 	 *             in case of an error or if the serial port cannot be found
 	 */
-	public void init(final String portName, final ISerialMessageParser parser) throws Exception {
+	public void init(final String portName, final int baudrate, final ISerialMessageParser parser) throws Exception {
 		messageParser = parser;
 		stop = false;
 		boolean portFound = false;
@@ -66,6 +67,7 @@ public class SerialListener {
 		}
 
 		comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
+		comPort.setBaudRate(baudrate);
 
 		/*
 		 * Define the asynchronous reader thread:

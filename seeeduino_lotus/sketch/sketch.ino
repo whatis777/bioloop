@@ -24,7 +24,7 @@ volatile unsigned int heartbeatDataTimeout = 0;
 // the setup routine runs once when you press reset:
 void setup() {
   // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
+  Serial.begin(115200);
   attachInterrupt(0, interrupt, RISING);//set interrupt 0,digital port 2
 }
 

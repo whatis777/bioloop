@@ -51,6 +51,7 @@ bioloop.DiagramController = function(diagramPlaceHolderId) {
 	
 	this.markers = [];
 	this.addMarker = false;
+	this.updateCounter = 0;
 	
 	var that = this;
 	
@@ -62,10 +63,15 @@ bioloop.DiagramController = function(diagramPlaceHolderId) {
 /** Maximum number of points in the diagram: */
 bioloop.DiagramController.MAX_POINTS = 3000;
 
+
+/** The update divider for performance regulation. */
+bioloop.DiagramController.UPDATE_DIVIDER = 1;
+
 /**
  * Setup the plotting diagram.
  */
 bioloop.DiagramController.prototype._updateDiagram = function() {
+	
 	var that = this;
 
 	// Initialize diagram
@@ -145,13 +151,13 @@ bioloop.DiagramController.prototype._updateDiagram = function() {
  *            date the new date to add to the diagram
  */
 bioloop.DiagramController.prototype.update = function(date) {
+	
+	this.updateCounter++;
+	
 	var timestamp = parseInt(date.timestamp);
 	var gsrValue = parseInt(date.gsrValue);
 	var hrvValue = parseInt(date.hrvValue);
 	var heartRateValue = parseInt(date.heartRate);
-
-	// Adjust the y-Axes
-	this._adjustYAxisScaling(gsrValue, hrvValue, heartRateValue);
 	
 	if (this.gsrProperties.diagramData.length > bioloop.DiagramController.MAX_POINTS) {
 		this.gsrProperties.diagramData.shift();
@@ -162,6 +168,13 @@ bioloop.DiagramController.prototype.update = function(date) {
 	this.gsrProperties.diagramData.push([ timestamp, gsrValue ]);
 	this.hrvProperties.diagramData.push([ timestamp, hrvValue ]);
 	this.heartRateProperties.diagramData.push([ timestamp, heartRateValue ]);
+	
+	if(this.updateCounter % bioloop.DiagramController.UPDATE_DIVIDER != 0) {
+		return; // no update required yet (to save performance)
+	} 
+	
+	// Adjust the y-Axes
+	this._adjustYAxisScaling(gsrValue, hrvValue, heartRateValue);
 
 	this._updateDiagram();
 };

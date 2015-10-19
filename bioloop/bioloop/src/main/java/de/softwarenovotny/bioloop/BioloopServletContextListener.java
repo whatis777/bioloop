@@ -33,7 +33,7 @@ public class BioloopServletContextListener implements ServletContextListener {
 		parser.init(consumer);
 		
 		try {
-			Bioloop.getInstance().getSerialListener().init("ttyUSB0", parser);
+			Bioloop.getInstance().getSerialListener().init("ttyUSB0", 115200, parser);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
