@@ -21,7 +21,7 @@ public class MessageConsumer {
 	/**
 	 * The number of data fields.
 	 */
-	private final static int FIELD_COUNT = 2;
+	private final static int FIELD_COUNT = 4;
 	
 	/**
 	 * The client that will be updated with new message data.
@@ -72,10 +72,12 @@ public class MessageConsumer {
 		int gsrValue = Integer.parseInt(tokenizer.nextToken());
 		// Extract HRV:
 		int hrvValue = Integer.parseInt(tokenizer.nextToken());
+		// Extract EMG:
+		int emgValue = Integer.parseInt(tokenizer.nextToken());
 		
 		// Notify Client:
 		// TODO do this in a thread!
-		clientInterface.update(gsrValue, hrvValue);
+		clientInterface.update(gsrValue, emgValue, hrvValue);
 	}
 
 }

@@ -33,7 +33,7 @@ bioloop.Bioloop.prototype.init = function() {
 	var that = this;
 
 	// Setup the diagram:
-	this.diagramController = new bioloop.DiagramController('#diagram_1');
+	this.diagramController = new bioloop.DiagramController();
 	// this.diagramController.setupDiagram();
 
 	$('#menu_start').click(function(evt) {

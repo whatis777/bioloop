@@ -81,7 +81,6 @@
 
 		<div class="vertical_spacer"></div>
 
-		<!-- 
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="diagram_container">
@@ -89,7 +88,6 @@
 				</div>
 			</div>
 		</div>
-		 -->
 
 	</div>
 

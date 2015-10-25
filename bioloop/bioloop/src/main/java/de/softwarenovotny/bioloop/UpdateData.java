@@ -11,8 +11,42 @@ public class UpdateData {
 	/**
 	 * The timestamp of the measurement.
 	 */
-	long timestamp;
+	private long timestamp;
+
+	/**
+	 * The GSR value (Galvanic skin response).
+	 */
+	private int gsrValue;
 	
+	/**
+	 * The HRV value (Heart Rate Variability).
+	 */
+	private int hrvValue;
+	
+	/**
+	 * The current heart rate.
+	 */
+	private int heartRate;
+	
+	/**
+	 * THe EMG value.
+	 */
+	private int emgValue;
+	
+	/**
+	 * @return the emgValue
+	 */
+	public int getEmgValue() {
+		return emgValue;
+	}
+
+	/**
+	 * @param emgValue the emgValue to set
+	 */
+	public void setEmgValue(int emgValue) {
+		this.emgValue = emgValue;
+	}
+
 	/**
 	 * @return the timestamp
 	 */
@@ -41,20 +75,6 @@ public class UpdateData {
 		this.heartRate = heartRate;
 	}
 
-	/**
-	 * The GSR value (Galvanic skin response).
-	 */
-	private int gsrValue;
-	
-	/**
-	 * The HRV value (Heart Rate Variability).
-	 */
-	private int hrvValue;
-	
-	/**
-	 * The current heart rate.
-	 */
-	int heartRate;
 
 	/**
 	 * @return the hrvValue

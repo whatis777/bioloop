@@ -12,6 +12,7 @@ import de.softwarenovotny.bioloop.websocket.EventSocket;
 public class ClientInterface {
 	private EventSocket eventWebSocket;
 	private GradingFilter gsrGradingFilter = new GradingFilter(5); 
+	private GradingFilter emgGradingFilter = new GradingFilter(1);
 	private GradingFilter heartRateGradingFilter = new GradingFilter(50);
 
 	public ClientInterface(EventSocket eventWebSocket) {
@@ -21,20 +22,23 @@ public class ClientInterface {
 	/**
 	 * Call this method each time the client UI shall be updated.
 	 * @param gsrValue
+	 * @param emgValue
 	 * @param hrvValue 
 	 */
-	public void update(int gsrValue, int hrvValue) {
+	public void update(int gsrValue, int emgValue, int hrvValue) {
 		
 		long timestamp = System.currentTimeMillis();
 		
 		// Apply grading of the received values:
 		int gradedGrsValue = gsrGradingFilter.filter(gsrValue);
+		int gradedEmgValue = emgGradingFilter.filter(emgValue);
 		int heartRate = heartRateGradingFilter.filter(getHeartRate(hrvValue));
 		
 		// Create JSON string:
 		UpdateData updateData = new UpdateData();
 		updateData.setTimestamp(timestamp);
 		updateData.setGsrValue(gradedGrsValue);
+		updateData.setEmgValue(gradedEmgValue);
 		updateData.setHrvValue(hrvValue);
 		updateData.setHeartRate(heartRate);
 		
